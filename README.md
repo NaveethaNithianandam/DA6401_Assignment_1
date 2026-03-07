@@ -1,5 +1,5 @@
-DA6401 Assignment 1
-NumPy Implementation of a Multi-Layer Perceptron (MLP)
+### DA6401 Assignment 1
+## NumPy Implementation of a Multi-Layer Perceptron (MLP)
 
 This project implements a configurable Multi-Layer Perceptron (MLP) from scratch using NumPy only for classification of the MNIST and Fashion-MNIST datasets.
 
@@ -50,7 +50,7 @@ da6401_assignment_1
 ```
 
 
-Installation
+** Installation **
 
 Install required dependencies: pip install -r requirements.txt
 Required libraries:
@@ -61,7 +61,7 @@ Required libraries:
 * keras
 * wandb
 
-Training
+** Training **
 
 Run training with default configuration: python src/train.py --dataset mnist
 
@@ -79,7 +79,7 @@ python src/train.py \
 -a relu \
 -wi xavier
 
-Inference
+** Inference **
 
 Run inference using the saved model:
 
@@ -95,21 +95,21 @@ This prints:
 * Recall
 * F1-score
 
-Weights and Biases Report
+# Weights and Biases Report
 
 W&B dashboard containing all experiments:
 
-Main Project Workspace
-https://wandb.ai/naveetha1008-/da6401_assignment
+** Main Project Workspace **
+`https://wandb.ai/naveetha1008-/da6401_assignment`
 
-Fashion-MNIST Transfer Experiments
-https://wandb.ai/naveetha1008-/fashion_mnist_transfer
+** Fashion-MNIST Transfer Experiments **
+`https://wandb.ai/naveetha1008-/fashion_mnist_transfer`
 
-2.1 Data Exploration and Class Distribution
+## 2.1 Data Exploration and Class Distribution
 
-W&B Visualization:
+*W&B Visualization:*
 
-https://wandb.ai/naveetha1008-/da6401_assignment/panel/pokex37lx
+`https://wandb.ai/naveetha1008-/da6401_assignment/panel/pokex37lx`
 
 Five samples from each digit class were visualized using a W&B table.
 
@@ -122,7 +122,7 @@ Upon visual inspection:
 * Digits 7 and 1 can sometimes be confused when written without a cross stroke.
 * Digits 0 and 6 may resemble each other sometimes.
 
-Impact on Model Performance
+** Impact on Model Performance **
 
 1. Visual similarity can impact classification performance by:
 2. Increasing misclassification between similar digits.
@@ -131,15 +131,15 @@ Impact on Model Performance
 
 Requiring the model to learn fine-grained stroke-level features.
 
-2.2 Hyperparameter Sweep
+## 2.2 Hyperparameter Sweep
 
-Sweep ID: vx0lowuh
+** Sweep ID: ** `vx0lowuh`
 
-Sweep dashboard: https://wandb.ai/naveetha1008-/da6401_assignment/sweeps/vx0lowuh
+** Sweep dashboard: ** `https://wandb.ai/naveetha1008-/da6401_assignment/sweeps/vx0lowuh`
 
-Best Run: azure-sweep-160
+** Best Run: ** `azure-sweep-160`
 
-Configuration:
+** Configuration: **
 
 Parameter	Value
 Activation	ReLU
@@ -150,7 +150,8 @@ Learning Rate	0.05
 Number of Layers	1
 Optimizer	NAG
 Weight Initialization	Random
-Key Observation
+
+** Key Observation **
 
 The learning rate had the most significant impact on validation accuracy.
 
@@ -158,9 +159,9 @@ In the parallel coordinates plot, high validation F1 scores were concentrated ar
 
 This indicates that the training process is highly sensitive to the learning rate.
 
-2.3 Optimizer Showdown
+## 2.3 Optimizer Showdown
 
-Workspace panel: https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/bu5a1pvka
+** Workspace panel: ** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/bu5a1pvka`
 
 Four optimizers were compared:
 * SGD
@@ -182,7 +183,7 @@ Among the four optimizers, RMSProp minimized the loss the fastest during the fir
 
 Since image classification problems often contain gradients with varying magnitudes, adaptive optimizers like RMSProp often converge faster than standard SGD.
 
-2.4 Vanishing Gradient Analysis
+## 2.4 Vanishing Gradient Analysis
 
 Experiments were conducted using RMSProp with two activation functions:
 1. Sigmoid
@@ -195,9 +196,9 @@ Gradient norms of the first hidden layer were logged during training.
 
 Sigmoid activations can lead to vanishing gradient problems in deeper networks, while ReLU mitigates this issue due to its linear gradient for positive inputs.
 
-2.5 Dead Neuron Investigation
+## 2.5 Dead Neuron Investigation
 
-Workspace panel: https://wandb.ai/naveetha1008-/da6401_assignment/workspace?panelDisplayName=relu_dead_ratio
+** Workspace panel:**  `https://wandb.ai/naveetha1008-/da6401_assignment/workspace?panelDisplayName=relu_dead_ratio`
 
 Experiments were conducted using:
 
@@ -209,9 +210,9 @@ Observation
 * The proportion of zero activations increased steadily during training, reaching approximately 47% by the final epoch. This indicates that many neurons became inactive (dead neurons).This is because, ReLU outputs zero for negative inputs and its derivative is also zero in that region. Once a neuron becomes inactive, it stops receiving gradient updates.
 * When the same experiment was conducted with Tanh activation, the proportion of zero activations remained negligible. Tanh allows gradients to flow even for negative inputs, resulting in more stable training.
 
-2.6 Loss Function Comparison
+## 2.6 Loss Function Comparison
 
-Workspace panel: https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/4i232ghvj
+** Workspace panel: ** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/4i232ghvj`
 
 Two models were trained with identical architectures using:
 
@@ -220,9 +221,9 @@ Two models were trained with identical architectures using:
 
 Cross-Entropy converged significantly faster than MSE. This because, it directly measures the difference between the predicted probability distribution and the true distribution. This produces larger and more informative gradients, enabling faster learning. MSE treats classification as a regression task and often produces smaller gradients, slowing convergence.
 
-2.7 Global Performance Analysis
+## 2.7 Global Performance Analysis
 
-Visualization: https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/7krg3mzap
+** Visualization:**  `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/7krg3mzap`
 
 The overlay plot shows runs where:
 
@@ -233,14 +234,14 @@ This indicates overfitting, where the model memorizes training data but fails to
 * Excessive model capacity
 * Insufficient regularization
 
-2.8 Error Analysis
+## 2.8 Error Analysis
 
 * A confusion matrix was generated for the best performing model. (da6401_assignment_1/Figure_2_8.png)
 * Misclassified images were visualized to understand model mistakes. (da6401_assignment_1/Figure_2_8i.png)
 
-2.9 Weight Initialization and Symmetry
+## 2.9 Weight Initialization and Symmetry
 
-Workspace panel: https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/xqar6k28r
+** Workspace panel: ** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/xqar6k28r`
 
 Two initialization strategies were compared:
 1. Zero Initialization
@@ -256,9 +257,9 @@ Two initialization strategies were compared:
 
 Thus, symmetry breaking through proper weight initialization is essential for training multilayer perceptrons.
 
-2.10 Fashion-MNIST Transfer Challenge
+## 2.10 Fashion-MNIST Transfer Challenge
 
-Experiments: https://wandb.ai/naveetha1008-/fashion_mnist_transfer
+** Experiments: **  `https://wandb.ai/naveetha1008-/fashion_mnist_transfer`
 
 Three configurations were selected based on MNIST experiments.
 
@@ -274,11 +275,9 @@ Observation
 * Deeper architectures allow the network to learn hierarchical features, improving performance on more complex datasets.
 
 
-The best model was saved as:
+** The best model was saved as: ** `src/best_model.npy`
 
-src/best_model.npy
-
-Configuration:
+** Configuration: **
 
 1 hidden layer
 128 neurons
@@ -286,7 +285,7 @@ ReLU activation
 NAG optimizer
 learning rate = 0.01
 
-Final Testing 
+** Final Testing ** 
 
 Training test:
 
@@ -300,4 +299,4 @@ python src/inference.py \
 --config src/best_config.json
 
 
-W&B Report : https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA
+** W&B Report : **  `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA`
