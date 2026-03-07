@@ -69,15 +69,17 @@ Example custom configuration:
 
 python src/train.py \
 -d mnist \
--e 20 \
+-e 10 \
 -b 64 \
 -l cross_entropy \
--o nag \
--lr 0.01 \
--nhl 1 \
+-o rmsprop \
+-lr 0.001 \
+-nhl 3 \
 -sz 128 \
 -a relu \
--wi xavier
+-wi random
+
+
 
 **Inference**
 
@@ -300,5 +302,3 @@ python src/inference.py \
 
 
 **W&B Report :** `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA`
-
-**Github Link :**`https://github.com/NaveethaNithianandam/DA6401_Assignment_1/tree/main`

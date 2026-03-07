@@ -12,10 +12,6 @@ import random
 import types
 
 
-
-#with open("src/best_config.json", "r") as f:
-    #config = json.load(f)
-    
 with open("src/best_config.json", "r") as f:
     config = json.load(f)
 

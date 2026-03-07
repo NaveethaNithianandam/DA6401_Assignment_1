@@ -1,15 +1,14 @@
 import numpy as np
 
 class ReLU:
-    def forward(self, x):
-        self.output = np.maximum(0, x)
-        return self.output
+    def forward(self, X):
+        self.X = X
+        return np.maximum(0, X)
 
-    def backward(self, grad):
-        dx = grad.copy()
-        dx[self.output <= 0] = 0
-        return dx
-
+    def backward(self, grad_output):
+        grad = grad_output.copy()
+        grad[self.X <= 0] = 0
+        return grad
 
 class Sigmoid:
     def forward(self, X):
@@ -18,7 +17,6 @@ class Sigmoid:
 
     def backward(self, grad_output):
         return grad_output * self.out * (1 - self.out)
-
 
 class Tanh:
     def forward(self, X):

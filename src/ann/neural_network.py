@@ -1,57 +1,102 @@
+"""
+Main Neural Network Model class
+Handles forward and backward propagation loops
+"""
+import numpy as np
+from ann.neural_layer import Dense
+from ann.activations import ReLU, Sigmoid, Tanh
+
 class NeuralNetwork:
-    def __init__(self, layers):
-        self.layers = layers
+    """
+    Main model class that orchestrates the neural network training and inference.
+    """
+
+    def __init__(self, args):
+        # Args: Namespace from argparse or config dict
+        self.num_layers = args.num_layers
+        self.hidden_size = args.hidden_size
+        self.weight_init = getattr(args, "weight_init", "xavier")
+        self.activation = getattr(args, "activation", "relu")
+
+        activation_map = {"relu": ReLU, "sigmoid": Sigmoid, "tanh": Tanh}
+        act_class = activation_map[self.activation]
+
+        self.layers = []
+        input_dim = 784
+        for h_dim in self.hidden_size:
+            self.layers.append(Dense(input_dim, h_dim, self.weight_init))
+            self.layers.append(act_class())
+            input_dim = h_dim
+
+        # Output layer
+        self.layers.append(Dense(input_dim, 10, self.weight_init))
 
     def forward(self, X):
+        out = X
         for layer in self.layers:
-            X = layer.forward(X)
-        return X 
+            out = layer.forward(out)
+        return out
 
-    def backward(self, grad):
+    def backward(self, y_true, y_pred, loss_type="cross_entropy"):
+        """
+        Compute gradients for all layers.
+        For cross-entropy, gradient is handled here.
+        """
+        grad_W_list = []
+        grad_b_list = []
+
+        # Compute loss gradient
+        if loss_type == "cross_entropy":
+            N = y_pred.shape[0]
+            exps = np.exp(y_pred - np.max(y_pred, axis=1, keepdims=True))
+            probs = exps / np.sum(exps, axis=1, keepdims=True)
+            grad = probs
+            grad[np.arange(N), y_true] -= 1
+            grad /= N
+        elif loss_type == "mse":
+            N = y_pred.shape[0]
+            y_onehot = np.zeros_like(y_pred)
+            y_onehot[np.arange(N), y_true] = 1
+            grad = 2 * (y_pred - y_onehot) / N
+        else:
+            raise ValueError("Unknown loss type")
+
+        g = grad
         for layer in reversed(self.layers):
-            grad = layer.backward(grad)
-        return grad
+            g = layer.backward(g)
+            if hasattr(layer, "W"):
+                grad_W_list.insert(0, layer.grad_W)
+                grad_b_list.insert(0, layer.grad_b)
+
+        self.grad_W = np.array(grad_W_list, dtype=object)
+        self.grad_b = np.array(grad_b_list, dtype=object)
+
+        return self.grad_W, self.grad_b
 
     def get_weights(self):
-        weights = []
-        for layer in self.layers:
-            if hasattr(layer, "W"):
-                weights.append((layer.W, layer.b))
-        return weights
-
-    def set_weights(self, weights):
+        d = {}
         idx = 0
         for layer in self.layers:
             if hasattr(layer, "W"):
-                layer.W, layer.b = weights[idx]
+                d[f"W{idx}"] = layer.W.copy()
+                d[f"b{idx}"] = layer.b.copy()
+                idx += 1
+        return d
+
+    def set_weights(self, weight_dict):
+        idx = 0
+        for layer in self.layers:
+            if hasattr(layer, "W"):
+                w_key = f"W{idx}"
+                b_key = f"b{idx}"
+                if w_key in weight_dict and b_key in weight_dict:
+                    layer.W = np.array(weight_dict[w_key]).reshape(layer.W.shape)
+                    layer.b = np.array(weight_dict[b_key]).reshape(layer.b.shape)
+                else:
+                    raise ValueError(f"Missing keys {w_key} or {b_key}")
                 idx += 1
 
-
-from ann.layers import Dense
-from ann.activations import ReLU, Sigmoid, Tanh
-
 def build_model(args):
-    layers = []
+    return NeuralNetwork(args)
 
-    input_dim = 784
-    hidden_dims = args.hidden_size
-
-    if len(hidden_dims) != args.num_layers:
-        raise ValueError("Number of hidden layers must match hidden_size list length")
-
-    activation_map = {
-        "relu": ReLU,
-        "sigmoid": Sigmoid,
-        "tanh": Tanh
-    }
-
-    act_class = activation_map[args.activation]
-
-    for hidden_dim in hidden_dims:
-        layers.append(Dense(input_dim, hidden_dim, args.weight_init))
-        layers.append(act_class())
-        input_dim = hidden_dim
-
-    layers.append(Dense(input_dim, 10, args.weight_init))
-
-    return NeuralNetwork(layers)
+__all__ = ["NeuralNetwork", "build_model"]
