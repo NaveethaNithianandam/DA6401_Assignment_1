@@ -1,0 +1,36 @@
+{
+    "beta": 0.9,
+    "dataset": "mnist",
+    "epochs": 10,
+    "batch_size": 64,
+    "loss": "cross_entropy",
+    "optimizer": "rmsprop",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "num_layers": 1,
+    "hidden_size": [
+        128
+    ],
+    "activation": "relu",
+    "weight_init": "xavier",
+    "wandb_project": "da6401_assignment",
+    "_wandb": {
+        "m": [],
+        "cli_version": "0.25.0",
+        "python_version": "3.12.10",
+        "t": {
+            "1": [
+                2,
+                3,
+                5,
+                49,
+                53,
+                105
+            ],
+            "4": "3.12.10",
+            "5": "0.25.0",
+            "12": "0.25.0",
+            "13": "darwin-arm64"
+        }
+    }
+}
