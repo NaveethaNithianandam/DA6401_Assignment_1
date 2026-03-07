@@ -1,5 +1,5 @@
-##DA6401 Assignment 1
-#NumPy Implementation of a Multi-Layer Perceptron (MLP)
+DA6401 Assignment 1
+NumPy Implementation of a Multi-Layer Perceptron (MLP)
 
 This project implements a configurable Multi-Layer Perceptron (MLP) from scratch using NumPy only for classification of the MNIST and Fashion-MNIST datasets.
 
