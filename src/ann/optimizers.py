@@ -41,11 +41,9 @@ class NAG:
             lookahead_W = layer.W - self.momentum * self.v_W[i]
             lookahead_b = layer.b - self.momentum * self.v_b[i]
 
-            # update velocities
             self.v_W[i] = self.momentum * self.v_W[i] + self.lr * (layer.grad_W + self.wd * lookahead_W)
             self.v_b[i] = self.momentum * self.v_b[i] + self.lr * layer.grad_b
 
-            # update weights
             layer.W -= self.v_W[i]
             layer.b -= self.v_b[i]
 
