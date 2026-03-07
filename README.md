@@ -50,7 +50,7 @@ da6401_assignment_1
 ```
 
 
-** Installation **
+**Installation **
 
 Install required dependencies: pip install -r requirements.txt
 Required libraries:
@@ -61,7 +61,7 @@ Required libraries:
 * keras
 * wandb
 
-** Training **
+**Training **
 
 Run training with default configuration: python src/train.py --dataset mnist
 
@@ -79,7 +79,7 @@ python src/train.py \
 -a relu \
 -wi xavier
 
-** Inference **
+**Inference **
 
 Run inference using the saved model:
 
@@ -99,10 +99,10 @@ This prints:
 
 W&B dashboard containing all experiments:
 
-** Main Project Workspace **
+**Main Project Workspace **
 `https://wandb.ai/naveetha1008-/da6401_assignment`
 
-** Fashion-MNIST Transfer Experiments **
+**Fashion-MNIST Transfer Experiments **
 `https://wandb.ai/naveetha1008-/fashion_mnist_transfer`
 
 ## 2.1 Data Exploration and Class Distribution
@@ -122,7 +122,7 @@ Upon visual inspection:
 * Digits 7 and 1 can sometimes be confused when written without a cross stroke.
 * Digits 0 and 6 may resemble each other sometimes.
 
-** Impact on Model Performance **
+**Impact on Model Performance **
 
 1. Visual similarity can impact classification performance by:
 2. Increasing misclassification between similar digits.
@@ -133,13 +133,13 @@ Requiring the model to learn fine-grained stroke-level features.
 
 ## 2.2 Hyperparameter Sweep
 
-** Sweep ID: ** `vx0lowuh`
+**Sweep ID: **`vx0lowuh`
 
-** Sweep dashboard: ** `https://wandb.ai/naveetha1008-/da6401_assignment/sweeps/vx0lowuh`
+**Sweep dashboard: **`https://wandb.ai/naveetha1008-/da6401_assignment/sweeps/vx0lowuh`
 
-** Best Run: ** `azure-sweep-160`
+**Best Run: **`azure-sweep-160`
 
-** Configuration: **
+**Configuration: **
 
 Parameter	Value
 Activation	ReLU
@@ -151,7 +151,7 @@ Number of Layers	1
 Optimizer	NAG
 Weight Initialization	Random
 
-** Key Observation **
+**Key Observation **
 
 The learning rate had the most significant impact on validation accuracy.
 
@@ -161,7 +161,7 @@ This indicates that the training process is highly sensitive to the learning rat
 
 ## 2.3 Optimizer Showdown
 
-** Workspace panel: ** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/bu5a1pvka`
+**Workspace panel: **`https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/bu5a1pvka`
 
 Four optimizers were compared:
 * SGD
@@ -198,7 +198,7 @@ Sigmoid activations can lead to vanishing gradient problems in deeper networks, 
 
 ## 2.5 Dead Neuron Investigation
 
-** Workspace panel:**  `https://wandb.ai/naveetha1008-/da6401_assignment/workspace?panelDisplayName=relu_dead_ratio`
+**Workspace panel:** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace?panelDisplayName=relu_dead_ratio`
 
 Experiments were conducted using:
 
@@ -212,7 +212,7 @@ Observation
 
 ## 2.6 Loss Function Comparison
 
-** Workspace panel: ** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/4i232ghvj`
+**Workspace panel: **`https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/4i232ghvj`
 
 Two models were trained with identical architectures using:
 
@@ -223,7 +223,7 @@ Cross-Entropy converged significantly faster than MSE. This because, it directly
 
 ## 2.7 Global Performance Analysis
 
-** Visualization:**  `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/7krg3mzap`
+**Visualization:** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/7krg3mzap`
 
 The overlay plot shows runs where:
 
@@ -241,7 +241,7 @@ This indicates overfitting, where the model memorizes training data but fails to
 
 ## 2.9 Weight Initialization and Symmetry
 
-** Workspace panel: ** `https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/xqar6k28r`
+**Workspace panel: **`https://wandb.ai/naveetha1008-/da6401_assignment/workspace/panel/xqar6k28r`
 
 Two initialization strategies were compared:
 1. Zero Initialization
@@ -259,7 +259,7 @@ Thus, symmetry breaking through proper weight initialization is essential for tr
 
 ## 2.10 Fashion-MNIST Transfer Challenge
 
-** Experiments: **  `https://wandb.ai/naveetha1008-/fashion_mnist_transfer`
+**Experiments: ** `https://wandb.ai/naveetha1008-/fashion_mnist_transfer`
 
 Three configurations were selected based on MNIST experiments.
 
@@ -275,9 +275,9 @@ Observation
 * Deeper architectures allow the network to learn hierarchical features, improving performance on more complex datasets.
 
 
-** The best model was saved as: ** `src/best_model.npy`
+**The best model was saved as: **`src/best_model.npy`
 
-** Configuration: **
+**Configuration: **
 
 1 hidden layer
 128 neurons
@@ -285,7 +285,7 @@ ReLU activation
 NAG optimizer
 learning rate = 0.01
 
-** Final Testing ** 
+**Final Testing **
 
 Training test:
 
@@ -299,4 +299,4 @@ python src/inference.py \
 --config src/best_config.json
 
 
-** W&B Report : **  `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA`
+**W&B Report : ** `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA`
