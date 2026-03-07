@@ -25,3 +25,4 @@ class MSELoss:
 
     def backward(self):
         return 2 * (self.logits - self.y_onehot) / self.N
+ 
