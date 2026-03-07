@@ -16,15 +16,12 @@ import types
 #with open("src/best_config.json", "r") as f:
     #config = json.load(f)
     
-# Load config
 with open("src/best_config.json", "r") as f:
     config = json.load(f)
 
-# Convert dict to Namespace
 import argparse
 config = argparse.Namespace(**config)
 
-# Load test data
 if config.dataset == "mnist":
     (_, _), (X_test, y_test) = mnist.load_data()
 else:
@@ -32,7 +29,6 @@ else:
 
 X_test = X_test.reshape(X_test.shape[0], -1) / 255.0
 
-# Build model and load weights
 model = build_model(config)
 best_weights = np.load("src/best_model.npy", allow_pickle=True)
 model.set_weights(best_weights)
