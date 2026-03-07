@@ -5,7 +5,7 @@ class NeuralNetwork:
     def forward(self, X):
         for layer in self.layers:
             X = layer.forward(X)
-        return X  # return logits
+        return X 
 
     def backward(self, grad):
         for layer in reversed(self.layers):
