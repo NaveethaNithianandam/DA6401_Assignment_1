@@ -300,3 +300,5 @@ python src/inference.py \
 
 
 **W&B Report :** `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA`
+
+**Github Link :**`https://github.com/NaveethaNithianandam/DA6401_Assignment_1/tree/main`
