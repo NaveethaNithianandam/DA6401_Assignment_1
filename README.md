@@ -135,11 +135,7 @@ Requiring the model to learn fine-grained stroke-level features.
 
 ## 2.2 Hyperparameter Sweep
 
-**Sweep ID:**`vx0lowuh`
-
 **Sweep dashboard:**`https://wandb.ai/naveetha1008-/da6401_assignment/sweeps/vx0lowuh`
-
-**Best Run:**`azure-sweep-160`
 
 **Configuration:**
 
