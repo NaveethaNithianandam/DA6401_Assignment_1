@@ -18,7 +18,6 @@ class RMSProp:
         self.eps = eps
         self.weight_decay = weight_decay
 
-        # Only track Dense layers
         self.layers = [layer for layer in layers if hasattr(layer, "W")]
 
         self.cache_W = [np.zeros_like(layer.W) for layer in self.layers]
