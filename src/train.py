@@ -46,7 +46,6 @@ def main():
     model = build_model(args)
     loss_fn = CrossEntropyLoss() if args.loss=="cross_entropy" else MSELoss()
 
-    # Optimizer
     if args.optimizer == "sgd":
         optimizer = SGD(model.layers, lr=args.learning_rate, weight_decay=args.weight_decay)
     elif args.optimizer == "momentum":
