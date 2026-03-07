@@ -1,7 +1,7 @@
 import wandb
 
-ENTITY = "naveetha1008-"        # your org
-PROJECT = "da6401_assignment"  # exact project name
+ENTITY = "naveetha1008-"        
+PROJECT = "da6401_assignment" 
 
 api = wandb.Api()
 
