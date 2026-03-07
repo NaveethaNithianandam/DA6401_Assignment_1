@@ -23,8 +23,8 @@ da6401_assignment_1
 ├── src
 │   ├── ann
 │   │   ├── activations.py
-│   │   ├── layers.py
-│   │   ├── loss.py
+│   │   ├── neural_layer.py
+│   │   ├── objective_function.py
 │   │   ├── neural_network.py
 │   │   └── optimizers.py
 │   │
