@@ -15,7 +15,9 @@ The implementation includes:
 
 No deep learning frameworks such as PyTorch, TensorFlow, or JAX were used.
 
-Project Structure : 
+## Project Structure
+
+```
 da6401_assignment_1
 │
 ├── src
@@ -24,7 +26,7 @@ da6401_assignment_1
 │   │   ├── layers.py
 │   │   ├── loss.py
 │   │   ├── neural_network.py
-│   │   ├── optimizers.py
+│   │   └── optimizers.py
 │   │
 │   ├── train.py
 │   ├── inference.py
@@ -34,9 +36,8 @@ da6401_assignment_1
 │   ├── sweep_config.py
 │   ├── sweep_run.py
 │   ├── delete_all_runs.py
-│   ├── error_analysis.py
 │   ├── FMNIST.py
-│   ├── log_samples.py 
+│   ├── log_samples.py
 │   │
 │   ├── best_model.npy
 │   └── best_config.json
@@ -44,8 +45,10 @@ da6401_assignment_1
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-├──Figure_2_8.png
-└──Figure_2_8i.png
+├── Figure_2_8.png
+└── Figure_2_8i.png
+```
+
 
 Installation
 
