@@ -12,7 +12,6 @@ class NeuralNetwork:
     """
 
     def __init__(self, args):
-        # Args: Namespace from argparse or config dict
         self.num_layers = args.num_layers
         self.hidden_size = args.hidden_size
         self.weight_init = getattr(args, "weight_init", "xavier")
@@ -28,7 +27,6 @@ class NeuralNetwork:
             self.layers.append(act_class())
             input_dim = h_dim
 
-        # Output layer
         self.layers.append(Dense(input_dim, 10, self.weight_init))
 
     def forward(self, X):
@@ -45,7 +43,6 @@ class NeuralNetwork:
         grad_W_list = []
         grad_b_list = []
 
-        # Compute loss gradient
         if loss_type == "cross_entropy":
             N = y_pred.shape[0]
             exps = np.exp(y_pred - np.max(y_pred, axis=1, keepdims=True))
