@@ -297,6 +297,6 @@ python src/inference.py \
 --config src/best_config.json
 
 
-**W&B Report :** `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA`
+**W&B Report :** `https://wandb.ai/naveetha1008-/da6401_assignment/reports/DA6401-Assignment-1-MLP-from-Scratch--VmlldzoxNjEzMTg4NA?accessToken=z54noyyuma3ifd6brm33wutp66ktzg4vm15q13q9hbgzrsvu5v3j8aii4q5bfufm`
 
 **Github link :** `https://github.com/NaveethaNithianandam/DA6401_Assignment_1`
